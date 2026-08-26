@@ -275,14 +275,14 @@
   .skills-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:0;
+    gap:2px;
+    background:var(--paper-line);
     border:1px solid var(--ink);
   }
   .skill-col{
-    padding:26px 26px;
-    border-right:1px solid var(--paper-line);
+    padding:24px 24px;
+    background:var(--card);
   }
-  .skill-col:last-child{ border-right:none; }
   .skill-col .k{
     font-family:'IBM Plex Mono',monospace;
     font-size:11.5px; text-transform:uppercase; letter-spacing:0.09em;
@@ -294,10 +294,12 @@
   }
   .skill-col li:last-child{ border-bottom:none; }
 
-  @media (max-width:760px){
+  @media (max-width:900px){
+    .skills-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  @media (max-width:600px){
     .skills-grid{ grid-template-columns:1fr; }
-    .skill-col{ border-right:none; border-bottom:1px solid var(--paper-line); }
-    .skill-col:last-child{ border-bottom:none; }
   }
 
   /* ---------- ABOUT ---------- */
@@ -438,15 +440,15 @@
         </div>
         <div class="card-gallery">
           <figure>
-            <img src="images/back_panel.png" loading="lazy" alt="CAD render of the back panel of the PC case">
+            <img src="back_panel.png" loading="lazy" alt="CAD render of the back panel of the PC case">
             <figcaption>BACK PANEL</figcaption>
           </figure>
           <figure>
-            <img src="images/front_chassis.png" loading="lazy" alt="CAD render of the front panel of the PC case">
+            <img src="front_chassis.png" loading="lazy" alt="CAD render of the front panel of the PC case">
             <figcaption>FRONT PANEL</figcaption>
           </figure>
           <figure>
-            <img src="images/top_panel.png" loading="lazy" alt="CAD render of the top panel of the PC case">
+            <img src="top_panel.png" loading="lazy" alt="CAD render of the top panel of the PC case">
             <figcaption>TOP PANEL</figcaption>
           </figure>
         </div>
@@ -472,15 +474,15 @@
         </div>
         <div class="card-gallery">
           <figure>
-            <img src="images/exhibit_final.png" loading="lazy" alt="Finished exhibit model with buildings and RGB LEDs">
+            <img src="exhibit_final.png" loading="lazy" alt="Finished exhibit model with buildings and RGB LEDs">
             <figcaption>FINISHED MODEL</figcaption>
           </figure>
           <figure>
-            <img src="images/final_exhibit.png" loading="lazy" alt="CAD assembly render of the exhibit baseplate">
+            <img src="final_exhibit.png" loading="lazy" alt="CAD assembly render of the exhibit baseplate">
             <figcaption>CAD ASSEMBLY</figcaption>
           </figure>
           <figure>
-            <img src="images/exhibit_cad.png" loading="lazy" alt="CAD render of the exhibit's modular panel layout">
+            <img src="exhibit_cad.png" loading="lazy" alt="CAD render of the exhibit's modular panel layout">
             <figcaption>PANEL LAYOUT</figcaption>
           </figure>
         </div>
@@ -542,17 +544,37 @@
     </div>
     <div class="skills-grid">
       <div class="skill-col">
-        <div class="k">Applications</div>
+        <div class="k">CAD &amp; Simulation</div>
         <ul>
           <li>SolidWorks</li>
           <li>AutoCAD</li>
           <li>Rhinoceros 3D</li>
-          <li>Adobe Creative Cloud</li>
-          <li>Microsoft / Google Suite</li>
+          <li>Technical Drawings</li>
+          <li>Assemblies</li>
         </ul>
       </div>
       <div class="skill-col">
-        <div class="k">Programming</div>
+        <div class="k">Manufacturing &amp; Design</div>
+        <ul>
+          <li>GD&amp;T</li>
+          <li>Tolerance Stack-Up</li>
+          <li>DFA/DFM</li>
+          <li>Dimensional Inspection</li>
+          <li>Mechanism Design</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="k">Testing &amp; Instrumentation</div>
+        <ul>
+          <li>DAQ</li>
+          <li>V&amp;V</li>
+          <li>Root-Cause Analysis</li>
+          <li>Wiring Diagrams</li>
+          <li>Pressure/Temp Sensors</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="k">Programming &amp; Controls</div>
         <ul>
           <li>MATLAB</li>
           <li>Python</li>
