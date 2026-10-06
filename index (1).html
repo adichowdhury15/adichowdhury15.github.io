@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Chowdhury — Mechanical Engineering &amp; Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF0E9;
+    --paper-line:#D9DED3;
+    --ink:#1C2B39;
+    --ink-soft:#455566;
+    --blue:#2F5D82;
+    --blue-soft:#4C7799;
+    --brass:#B08246;
+    --brass-soft:#D9B98A;
+    --card:#F7F8F3;
+    --max:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.55;
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size:34px 34px;
+    background-position:-1px -1px;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.02em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  :focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(238,240,233,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .nav-mark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--ink);
+    text-decoration:none;
+  }
+  .nav-mark .dot{
+    width:9px;height:9px;border:1.5px solid var(--blue); border-radius:50%;
+    position:relative;
+  }
+  .nav-mark .dot::after{
+    content:""; position:absolute; inset:2.5px; background:var(--brass); border-radius:50%;
+  }
+  .nav-links{
+    display:flex; gap:28px; list-style:none; margin:0; padding:0;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em;
+  }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px;}
+  .nav-links a:hover{ color:var(--blue); border-color:var(--blue);}
+
+  /* ---------- HERO / TITLE BLOCK ---------- */
+  header.hero{ padding:76px 0 40px; }
+  .hero-top{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:36px;
+  }
+  .hero-heading{ flex:1; min-width:260px; }
+  .portrait{
+    border:1px solid var(--ink);
+    background:var(--card);
+    overflow:hidden;
+  }
+  .portrait img{
+    width:100%; display:block;
+    aspect-ratio:4/5; object-fit:cover;
+    filter:grayscale(15%) contrast(1.02);
+  }
+  .portrait figcaption{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; color:var(--ink-soft);
+    text-transform:uppercase; letter-spacing:0.08em;
+    padding:9px 14px;
+    border-top:1px solid var(--paper-line);
+    display:flex; justify-content:space-between;
+  }
+  .hero-portrait{
+    flex-shrink:0;
+    width:150px;
+  }
+  .hero-portrait img{ aspect-ratio:4/5; }
+  .hero-portrait figcaption{ font-size:9.5px; padding:7px 10px; }
+  @media (max-width:640px){
+    .hero-top{ flex-wrap:wrap-reverse; gap:20px; }
+    .hero-portrait{ width:110px; }
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--blue);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:1px; background:var(--blue);
+  }
+  .hero h1{
+    font-size:clamp(38px,6vw,64px);
+    line-height:1.02;
+    max-width:14ch;
+  }
+  .hero .role{
+    margin-top:18px;
+    font-size:19px;
+    color:var(--ink-soft);
+    max-width:52ch;
+  }
+  .hero .lede{
+    margin-top:22px;
+    max-width:58ch;
+    font-size:16px;
+    color:var(--ink-soft);
+  }
+  .hero-cta{
+    margin-top:32px;
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:2px;
+    display:inline-block;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{
+    background:var(--ink); color:var(--paper);
+  }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 4px 0 var(--brass); }
+  .btn-outline{
+    border:1px solid var(--ink); color:var(--ink);
+  }
+  .btn-outline:hover{ transform:translateY(-1px); box-shadow:0 4px 0 var(--blue); }
+
+  /* title block, styled like a real drawing title block */
+  .title-block{
+    margin-top:56px;
+    border:1px solid var(--ink);
+    background:var(--card);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+  .title-block .field{
+    padding:14px 18px;
+    border-right:1px solid var(--paper-line);
+  }
+  .title-block .field:last-child{ border-right:none; }
+  .title-block .field .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:5px;
+  }
+  .title-block .field .v{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--ink);
+  }
+
+  @media (max-width:720px){
+    .title-block{ grid-template-columns:repeat(2,1fr); }
+    .title-block .field:nth-child(2n){ border-right:none; }
+    .title-block .field:nth-child(-n+2){ border-bottom:1px solid var(--paper-line); }
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{ padding:70px 0; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:20px; margin-bottom:44px;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:18px;
+  }
+  .section-head h2{ font-size:clamp(26px,3.4vw,34px); }
+  .sheet-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+
+  /* ---------- PROJECT CARDS ---------- */
+  .projects{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:26px;
+  }
+  .card{
+    border:1px solid var(--ink);
+    background:var(--card);
+    position:relative;
+  }
+  .card-body{ padding:30px 30px 24px; }
+  .card-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:20px;
+    margin-bottom:14px;
+  }
+  .card-top h3{ font-size:22px; }
+  .card-date{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--blue);
+    white-space:nowrap; margin-top:6px;
+  }
+  .card p{ color:var(--ink-soft); font-size:15px; max-width:70ch; }
+  .whw{ display:grid; gap:14px; margin:0 0 16px; }
+  .whw-item{ max-width:70ch; }
+  .whw-item .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px; color:var(--blue);
+    text-transform:uppercase; letter-spacing:0.1em;
+    margin-bottom:4px;
+  }
+  .whw-item p{ margin:0; }
+  .lessons{
+    border-left:2px solid var(--brass);
+    padding:10px 0 10px 16px;
+    margin:16px 0 0;
+    max-width:70ch;
+  }
+  .lessons .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px; color:var(--brass);
+    text-transform:uppercase; letter-spacing:0.1em;
+    margin-bottom:4px;
+  }
+  .lessons p{ margin:0; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink);
+    border:1px solid var(--paper-line);
+    background:var(--paper);
+    padding:5px 10px;
+  }
+  .card-strip{
+    border-top:1px solid var(--paper-line);
+    padding:12px 30px;
+    display:flex; justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft);
+  }
+
+  .card-gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    background:var(--paper-line);
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .card-gallery figure{
+    margin:0; position:relative; overflow:hidden;
+    aspect-ratio:4/3;
+    background:var(--card);
+  }
+  .card-gallery img{
+    width:100%; height:100%; object-fit:cover;
+    display:block;
+    filter:grayscale(15%) contrast(1.02);
+    transition:transform .35s ease, filter .35s ease;
+  }
+  .card-gallery figure:hover img{
+    transform:scale(1.04);
+    filter:grayscale(0%) contrast(1.05);
+  }
+  .card-gallery figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:6px 8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:#fff;
+    background:linear-gradient(transparent, rgba(20,26,32,0.82));
+    opacity:0; transition:opacity .25s ease;
+  }
+  .card-gallery figure:hover figcaption{ opacity:1; }
+
+  @media (max-width:600px){
+    .card-gallery{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border:1px solid var(--ink);
+  }
+  .skill-col{
+    padding:26px 26px;
+    border-right:1px solid var(--paper-line);
+  }
+  .skill-col:last-child{ border-right:none; }
+  .skill-col .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px; text-transform:uppercase; letter-spacing:0.09em;
+    color:var(--blue); margin-bottom:14px;
+  }
+  .skill-col ul{ list-style:none; margin:0; padding:0; }
+  .skill-col li{
+    font-size:14.5px; padding:6px 0; border-bottom:1px dashed var(--paper-line);
+  }
+  .skill-col li:last-child{ border-bottom:none; }
+
+  @media (max-width:760px){
+    .skills-grid{ grid-template-columns:1fr; }
+    .skill-col{ border-right:none; border-bottom:1px solid var(--paper-line); }
+    .skill-col:last-child{ border-bottom:none; }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:50px; align-items:start;
+  }
+  .about-grid p{ font-size:16px; color:var(--ink-soft); margin:0 0 16px; }
+  .coord{
+    border-left:2px solid var(--blue);
+    padding-left:20px;
+  }
+  .coord .k{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--blue); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;}
+  .coord .v{ font-size:14.5px; margin-bottom:20px; }
+
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{
+    border-top:1px solid var(--ink);
+    padding:56px 0 40px;
+  }
+  .contact-grid{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px;
+  }
+  footer h2{ font-size:clamp(28px,4vw,40px); max-width:12ch; }
+  .contact-links{ display:flex; flex-direction:column; gap:10px; }
+  .contact-links a{
+    font-family:'IBM Plex Mono',monospace; font-size:14px; text-decoration:none;
+    color:var(--ink);
+    border-bottom:1px solid var(--paper-line);
+    padding-bottom:8px;
+    width:fit-content;
+  }
+  .contact-links a:hover{ color:var(--blue); border-color:var(--blue); }
+  .foot-note{
+    margin-top:50px; padding-top:20px; border-top:1px solid var(--paper-line);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-mark"><span class="dot"></span> A. CHOWDHURY</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-heading">
+        <div class="eyebrow">Mechanical Engineering &amp; Design — Northeastern University</div>
+        <h1>Aditya Chowdhury</h1>
+      </div>
+      <figure class="portrait hero-portrait">
+        <img src="images/headshot.jpg" alt="Portrait of Aditya Chowdhury">
+        <figcaption><span>FIG. 01</span><span>A. CHOWDHURY</span></figcaption>
+      </figure>
+    </div>
+    <p class="role">Hi, I'm Aditya — a fourth-year Mechanical Engineering and Design student at Northeastern University in Boston, MA.</p>
+    <p class="lede">I've been a hands-on person my whole life, starting with Legos and growing into a real interest in the creative process. My education lets me apply that experience and curiosity to real-life scenarios where my decisions matter — especially work involving CAD and hands-on machine work that can change people's lives for the better.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-outline" href="#contact">Get in Touch</a>
+    </div>
+
+    <div class="title-block">
+      <div class="field">
+        <div class="k">Drawn By</div>
+        <div class="v">A. Chowdhury</div>
+      </div>
+      <div class="field">
+        <div class="k">Program</div>
+        <div class="v">B.S. ME&amp;D, Class of 2027</div>
+      </div>
+      <div class="field">
+        <div class="k">Based In</div>
+        <div class="v">Boston, MA</div>
+      </div>
+      <div class="field">
+        <div class="k">Status</div>
+        <div class="v">Open to Co-op / Internship</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>About</h2>
+      <div class="sheet-tag">SHEET 1 OF 4 — PROFILE</div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm passionate about work that changes people's lives for the better, especially when it involves CAD and hands-on machine work.</p>
+        <p>That shows up across the four projects on this site: modeling a full-scale PC down to caliper-measured tolerances, building sensor-driven feedback into a children's museum exhibit, and designing an assistive device around a client's real budget and weight limits. Outside of mechanical work, I've mastered Python in order to build small tools on my own, which is reflected in the fourth project below. I'm excited to keep growing as an engineer through whatever comes next — thank you for stopping by.</p>
+        <p>Right now I'm looking for a Summer 2027 mechanical engineering co-op or internship — ideally in mechanical design, product development, or hands-on manufacturing — where I can apply CAD and prototyping skills to problems that affect real people. Longer term, I want to grow into a design role where I'm leading hardware from concept through production.</p>
+        <p><a href="resume.pdf" class="mono" style="color:var(--blue); text-decoration:underline;">View my résumé (PDF) →</a></p>
+      </div>
+      <div class="coord">
+        <div class="k">Institution</div>
+        <div class="v">Northeastern University, College of Engineering</div>
+        <div class="k">Coursework</div>
+        <div class="v">Statics, Thermodynamics, Mechanics of Materials, Fluid Mechanics, Material Science, Differential Equations &amp; Linear Algebra</div>
+        <div class="k">Activities</div>
+        <div class="v">ASME, RISE Against Hunger</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Project Work</h2>
+      <div class="sheet-tag">SHEET 2 OF 4 — PROJECTS</div>
+    </div>
+
+    <div class="projects">
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Full-Scale PC Model</h3>
+            <div class="card-date">Jul 2025 — Current</div>
+          </div>
+          <div class="whw">
+            <div class="whw-item">
+              <div class="k">What</div>
+              <p>A personal, ongoing build: modeling a full-scale PC case in SolidWorks entirely from hand measurements rather than a published spec sheet, to practice tolerancing on a real physical object instead of a textbook drawing.</p>
+            </div>
+            <div class="whw-item">
+              <div class="k">How</div>
+              <p>Every dimension is hand-measured with calipers, so each panel has to be independently verified for fit before it's trusted. The back panel needed graphics card brackets, a power supply slot, an I/O plate, and dual fan mounts (120mm/140mm) with venting; the front panel carries its own fan pattern and mounting points for a plate still in progress; the top panel is the most component-dense, integrating USB/audio ports, a reset switch, a power button, and overhead fan mounts in one surface. The main constraint has been reconciling small measurement error across calipers with the tight fits GD&amp;T calls for.</p>
+            </div>
+            <div class="whw-item">
+              <div class="k">Why</div>
+              <p>Three of the case's panels are now fully modeled and verified against the physical part, with the front panel's attachment plate as the next step. The project has been my main way of practicing tolerance stack-up and GD&amp;T on something I can physically check, not just simulate.</p>
+            </div>
+          </div>
+          <div class="lessons">
+            <div class="k">Skills &amp; Lessons Learned</div>
+            <p>Sharpened my GD&amp;T and tolerancing skills, and learned to treat every hand-measured dimension as a source of error to budget for, rather than a fixed number — a habit I now carry into every model I build from a physical reference instead of a spec sheet.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">SolidWorks</span>
+            <span class="tag">GD&amp;T</span>
+            <span class="tag">Caliper Measurement</span>
+            <span class="tag">Independent</span>
+          </div>
+        </div>
+        <div class="card-gallery">
+          <figure>
+            <img src="images/back_panel.png" loading="lazy" alt="CAD render of the back panel of the PC case">
+            <figcaption>BACK PANEL</figcaption>
+          </figure>
+          <figure>
+            <img src="images/front_chassis.png" loading="lazy" alt="CAD render of the front panel of the PC case">
+            <figcaption>FRONT PANEL</figcaption>
+          </figure>
+          <figure>
+            <img src="images/top_panel.png" loading="lazy" alt="CAD render of the top panel of the PC case">
+            <figcaption>TOP PANEL</figcaption>
+          </figure>
+        </div>
+        <div class="card-strip">
+          <span>PANELS MODELED: BACK / FRONT / TOP</span>
+          <span>STATUS: IN PROGRESS</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Environmental Sustainability Exhibit</h3>
+            <div class="card-date">Feb — May 2025</div>
+          </div>
+          <div class="whw">
+            <div class="whw-item">
+              <div class="k">What</div>
+              <p>A team project for a children's museum: an interactive exhibit teaching families about energy use and renewable power through hands-on play rather than a static display. <strong>My individual contribution</strong> included CAD modeling work and being one of two team members who physically assembled the exhibit — assembly that involved hands-on electronics work, including wiring the voltage-detection contacts.</p>
+            </div>
+            <div class="whw-item">
+              <div class="k">How</div>
+              <p>Resistor-encoded, 3D-printed buildings sit on a baseplate wired to read voltage through a three-point contact system, chosen to stay reliable under imprecise, kid-handled placement — the hardest constraint, since the exhibit had to survive repeated handling by children without false readings. That signal drives real-time RGB LED and display feedback via Arduino. I handled CAD work for the build and was one of two people who physically assembled the final exhibit, wiring the contacts and electronics by hand. The physical models also had to be durable and painted for clarity so the lesson read clearly from across the room.</p>
+            </div>
+            <div class="whw-item">
+              <div class="k">Why</div>
+              <p>The finished exhibit shipped to the museum and is used directly by visiting families, turning an abstract concept (renewable energy) into something kids can physically place and see react.</p>
+            </div>
+          </div>
+          <div class="lessons">
+            <div class="k">Skills &amp; Lessons Learned</div>
+            <p>Assembling the exhibit by hand — including wiring the voltage-detection contacts — taught me how differently a design behaves once it's physically built versus modeled, and gave me a much better sense of what "durable enough for kids" actually requires at the wiring and contact level, not just on paper.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Arduino</span>
+            <span class="tag">MATLAB</span>
+            <span class="tag">3D Printing</span>
+            <span class="tag">Team Project</span>
+          </div>
+        </div>
+        <div class="card-gallery">
+          <figure>
+            <img src="images/exhibit_final.png" loading="lazy" alt="Finished exhibit model with buildings and RGB LEDs">
+            <figcaption>FINISHED MODEL</figcaption>
+          </figure>
+          <figure>
+            <img src="images/final_exhibit.png" loading="lazy" alt="CAD assembly render of the exhibit baseplate">
+            <figcaption>CAD ASSEMBLY</figcaption>
+          </figure>
+          <figure>
+            <img src="images/exhibit_cad.png" loading="lazy" alt="CAD render of the exhibit's modular panel layout">
+            <figcaption>PANEL LAYOUT</figcaption>
+          </figure>
+        </div>
+        <div class="card-strip">
+          <span>OUTPUT: RGB LED + DISPLAY FEEDBACK</span>
+          <span>USERS: MUSEUM VISITORS</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Assistive Projectile Launcher</h3>
+            <div class="card-date">Jan — Feb 2025</div>
+          </div>
+          <p>A one-handed orthotic built with a team to let people with mobility and motor-control limitations participate in a shooting-competition activity. Development ran through the full engineering design process — repeated prototyping, testing, and a maintained BOM — while holding to a client-set $10 budget, a 2.5 lb weight limit, and fixed size restrictions. The final device placed top three in the class design and shooting competition.</p>
+          <div class="tags">
+            <span class="tag">Design Process</span>
+            <span class="tag">Rapid Prototyping</span>
+            <span class="tag">Assistive Design</span>
+            <span class="tag">Team Project</span>
+          </div>
+        </div>
+        <div class="card-strip">
+          <span>BUDGET: $10 · WEIGHT: 2.5 LB MAX</span>
+          <span>RESULT: TOP 3 OF CLASS</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-top">
+            <h3>University Registration System</h3>
+            <div class="card-date">2026 — Coursework</div>
+          </div>
+          <p>An independent software project outside my core mechanical work — a Python based course-registration system built for an intro to programming class. Students and courses are modeled with nested data structures, and the program enforces the constraints a real registrar would need: a 13-credit cap per student, no duplicate enrollment, and no registering into a full course. Each operation lives in its own function with input validation so bad inputs never crash the program, and a small test suite covering both successful and rejected registration paths.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Data Structures</span>
+            <span class="tag">Input Validation</span>
+            <span class="tag">Independent</span>
+          </div>
+        </div>
+        <div class="card-strip">
+          <span>LANGUAGE: PYTHON</span>
+          <span>TESTED: 4 CORE CASES</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <div class="sheet-tag">SHEET 3 OF 4 — TOOLING</div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="k">Applications</div>
+        <ul>
+          <li>SolidWorks</li>
+          <li>AutoCAD</li>
+          <li>Rhinoceros 3D</li>
+          <li>Adobe Creative Cloud</li>
+          <li>Microsoft / Google Suite</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="k">Programming</div>
+        <ul>
+          <li>MATLAB</li>
+          <li>Python</li>
+          <li>Arduino</li>
+          <li>Java</li>
+          <li>Dr. Racket</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="k">Awards</div>
+        <ul>
+          <li>AP Scholar w/ Distinction</li>
+          <li>National Honor Society</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 style="border:none;padding:0;margin:0;">Let's talk</h2>
+      <div class="sheet-tag">SHEET 4 OF 4 — CONTACT</div>
+    </div>
+    <div class="contact-grid">
+      <p style="max-width:44ch; color:var(--ink-soft); font-size:16px;">Looking for a mechanical engineering co-op or internship where hands-on problem-solving and precision allow me to make a difference. Reach me through any of the following contact methods shown.</p>
+      <div class="contact-links">
+        <a href="mailto:chowdhury.ad@northeastern.edu">chowdhury.ad@northeastern.edu</a>
+        <a href="tel:+17325327812">(732) 532-7812</a>
+        <a href="https://www.linkedin.com/in/aditya-chowdhury-/" target="_blank" rel="noopener">linkedin.com/in/aditya-chowdhury-</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>© 2026 Aditya Chowdhury</span>
+      <span>Boston, MA</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
